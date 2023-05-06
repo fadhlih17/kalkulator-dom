@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .btn-operation {
+        margin: 10px 5px;
+        width: 60px;
+        height: 35px;
+      }
+      #number1,
+      #number2 {
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form-calculator" style="display: flex; margin: 50px">
+      <div>
+        <input type="number" id="number1" />
+        <input type="number" id="number2" /> <br />
+        <input type="button" value="+" class="btn-operation" onclick="calculate('+')" />
+        <input type="button" value="-" class="btn-operation" onclick="calculate('-')" />
+        <input type="button" value="*" class="btn-operation" onclick="calculate('*')" />
+        <input type="button" value="/" class="btn-operation" onclick="calculate('/')" /> <br />
+        <input type="button" onclick="getClear()" value="Reset" style="width: 300px; height: 30px" />
+      </div>
+      <div style="padding: 10px; margin-left: 20px; min-width: 60px; max-width: 25%; border: solid grey; height: 60px; text-align: center; justify-content: center;">
+        <h3 id="result"></h3>
+      </div>
+    </form>
+    <script>
+      const number1 = document.getElementById("number1");
+      const number2 = document.getElementById("number2");
+      const result = document.getElementById("result");
+
+      function calculate(operator){
+        if(operator === '+') {
+            result.innerHTML = Number(number1.value) + Number(number2.value);
+        } else if (operator === '-') {
+            result.innerHTML = Number(number1.value) - Number(number2.value);
+        } else if (operator === '*') {
+            result.innerHTML = Number(number1.value) * Number(number2.value);
+        } else if (operator === '/') {
+            if (number2.value == 0) {
+                result.innerHTML = 'cant divide 0';
+                return;
+            }
+            result.innerHTML = Number(number1.value) / Number(number2.value);
+        }
+      }
+      function getClear() {
+        result.innerHTML = ""; 
+        document.getElementById('form-calculator').reset();
+      }
+    </script>
+  </body>
+</html>
